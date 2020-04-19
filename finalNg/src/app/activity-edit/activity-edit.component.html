@@ -1,0 +1,22 @@
+<div>
+  <h2>Update an Activity</h2>
+  <div>
+    <label>Title:
+      <input [(ngModel)]="activityData.title" />
+    </label><br>
+    <label>Description:
+      <input [(ngModel)]="activityData.description"/>
+    </label><br>
+    <label>Start Time:
+      <input [(ngModel)]="activityData.StartTime" type="time"/>
+      <!--choose date?-->
+    </label><br>
+    <label>End Time:
+      <input [(ngModel)]="activityData.EndTime" type="time"/>
+    </label><br>
+    <label>Location:
+      <input [(ngModel)]="activityData.location"/>
+    </label><br>
+  </div>
+  <button (click)="updateActivity()">Update</button>
+</div>

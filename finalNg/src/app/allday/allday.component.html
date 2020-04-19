@@ -1,0 +1,39 @@
+
+<div>
+  <h2>Today's task</h2>
+<div>
+  <button (click)="add()">
+    Add an
+  </button>
+</div>
+
+<!--<ul class="todos">-->
+  <!--<li *ngFor="let p of activities; let i=index;">-->
+    <!--<a routerLink="/activity-details/{{p._id}}">-->
+      <!--<span class="badge">{{i+1}}</span> {{p.title}}-->
+    <!--</a>-->
+  <!--</li>-->
+<!--</ul>-->
+<div class="history-tl-container">
+  <ul class="tl">
+    <!--<li class="tl-item" ng-repeat="item in retailer_history">-->
+      <!--<div class="timestamp">-->
+        <!--1:00 AM-->
+      <!--</div>-->
+      <!--<div class="item-title">Start from Shire</div>-->
+    <!--</li>-->
+    <li *ngFor="let idx of ['00','01','02','03','04','05','06','07','08','09','10','11','12']" class="tl-item">
+      <div class="timestamp">
+        {{idx}}:00AM
+      </div>
+      <div class="item-title" id="task{{idx}}"></div>
+    </li>
+    <li *ngFor="let idx of [1,2,3,4,5,6,7,8,9,10,11,12]" class="tl-item">
+      <div class="timestamp">
+        {{idx}}:00PM
+      </div>
+      <div class="item-title" id="task{{idx+12}}"></div>
+    </li>
+  </ul>
+</div>
+</div>

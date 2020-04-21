@@ -2,7 +2,7 @@
 
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
-
+const username=require('../username');
 //create the schema
 let ActivitySchema=new Schema({
     title:{
@@ -26,6 +26,9 @@ let ActivitySchema=new Schema({
     },
     modifiedDate: {
         type: String
+    },
+    Date:{
+        type: String,
     }
 }, {
     versionKey: false
@@ -41,6 +44,6 @@ ActivitySchema.virtual('id').get(function(){
 ActivitySchema.set('toJSON', {
     virtuals: true
 });
-
-module.exports = mongoose.model('activities', ActivitySchema);
-
+console.log("in the todo:"+username.getUsername());
+//module.exports = mongoose.model('activities', ActivitySchema);
+module.exports=mongoose.model(username.getUsername(), ActivitySchema);

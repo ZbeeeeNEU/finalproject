@@ -1,7 +1,11 @@
 'use strict';
-
-const mongoose=require('mongoose'), Todo=mongoose.model('activities');
-
+const username=require('../username');
+const mongoose=require('mongoose'), Todo=mongoose.model(username.getUsername());
+/**
+ * How to create the collection?
+ */
+// var small = new Todo({title: '1'});
+// small.save();
 /**
  * function to search objects
  * @param params

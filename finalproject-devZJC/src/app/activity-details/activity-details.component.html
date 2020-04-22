@@ -1,0 +1,19 @@
+<div *ngIf="activity" class="todos">
+  <h2>{{activity.title | uppercase}} Details</h2>
+  <!--Today's date-->
+  <div><span>Title:</span> <div class="details">{{activity.title}}</div></div>
+  <div><span>Description: </span><div class="details">{{activity.description}}</div></div>
+  <div><span>Start Time: </span><div class="details">{{activity.StartTime}}</div></div>
+  <div><span>End Time:</span><div class="details">{{activity.EndTime}}</div></div>
+  <div><span>Location: </span><div class="details">{{activity.location}}</div></div>
+
+  <div>
+    <button (click)="ToEdit()">
+      Edit
+    </button>
+    <button class="del" title="delete activity" (click)="deleteActivity(activity._id)" >
+      Delete
+    </button>
+    <button (click)="backToHome()">Back to Calendar</button>
+  </div>
+</div>

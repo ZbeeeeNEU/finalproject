@@ -1,0 +1,28 @@
+.todos{
+  text-align: center;
+  font-family: "Century Gothic";
+
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  label{
+    grid-column: 1;
+    text-align: left;
+    margin-left: 25%;
+    margin-top: 10px;
+  }
+  .details{
+    margin-top: 10px;
+    outline: none;
+    border: none;
+    background-color: lightcyan;
+    height: 30px;
+    border-radius: 5px;
+    :hover{
+      background-color: lightgray;
+    }
+    text-align: left;
+    grid-column: 2/4;
+    margin-right: 25%;
+  }
+}
+

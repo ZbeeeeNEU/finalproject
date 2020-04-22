@@ -1,0 +1,35 @@
+<div class="board">
+  <div id="userName">
+
+    <h2 class="title">Sign in</h2>
+    <p class="text">to continue to Calender </p>
+
+    <!-- input user name -->
+    <input #user type="text" class="username" id="user" placeholder="Username">
+    <p class="wrong" id="noAccount">Couldn't find your Account</p>
+    <a href="" class="forget">Forgot Username?</a>
+
+    <p class="account">Don't have account? Join us now.</p>
+
+    <a class="create" href="SignUp">Create account</a>
+    <button class="next" ripple (click)="checkUser(user)">Next</button>
+
+  </div>
+
+  <div id="password">
+
+    <h2 class="title" id="ua">Welcome</h2>
+
+    <div class="userAccount" (click)="back()">
+      <!-- show account name -->
+      <p id="account">username<p>
+    </div>
+
+    <!-- input Password -->
+    <input #pass type="password" class="username" id="pass" placeholder="Password">
+    <p class="wrong" id="wrongPass">Wrong password. Try again.</p>
+    <a href="" class="forget">Forgot Password?</a>
+
+    <button class="next2" ripple (click)="checkPassword(pass)">Next</button>
+  </div>
+</div>

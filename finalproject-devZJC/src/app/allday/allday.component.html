@@ -1,0 +1,47 @@
+
+<div>
+  <h2>Today's tasks</h2>
+<div>
+  <button (click)="add()">
+    <svg width="36" height="36" viewBox="0 0 36 36"><path fill="#34A853" d="M16 16v14h4V20z"></path><path fill="#4285F4" d="M30 16H20l-4 4h14z"></path><path fill="#FBBC05" d="M6 16v4h10l4-4z"></path><path fill="#EA4335" d="M20 16V6h-4v14z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg>
+  </button>
+</div>
+
+<!--<ul class="todos">-->
+  <!--<li *ngFor="let p of activities; let i=index;">-->
+    <!--<a routerLink="/activity-details/{{p._id}}">-->
+      <!--<span class="badge">{{i+1}}</span> {{p.title}}-->
+    <!--</a>-->
+  <!--</li>-->
+<!--</ul>-->
+<div class="history-tl-container">
+  <ul class="tl">
+    <!--<li class="tl-item" ng-repeat="item in retailer_history">-->
+      <!--<div class="timestamp">-->
+        <!--1:00 AM-->
+      <!--</div>-->
+      <!--<div class="item-title">Start from Shire</div>-->
+    <!--</li>-->
+    <li *ngFor="let idx of ['00','01','02','03','04','05','06','07','08','09','10','11','12']" class="tl-item">
+      <div class="timestamp">
+        {{idx}}:00AM
+      </div>
+      <div class="item-title" id="task{{idx}}"></div>
+    </li>
+    <li *ngFor="let idx of [1,2,3,4,5,6,7,8,9]" class="tl-item">
+      <div class="timestamp">
+        0{{idx}}:00PM
+      </div>
+      <div class="item-title" id="task{{idx+12}}"></div>
+    </li>
+    <li *ngFor="let t of [10,11,12]" class="tl-item">
+      <div class="timestamp">
+        {{t}}:00PM
+      </div>
+      <div class="item-title" id="task{{t+12}}"></div>
+    </li>
+  </ul>
+</div>
+  <app-activity-add>Add it!</app-activity-add>
+</div>
+

@@ -1,0 +1,162 @@
+<nz-layout>
+    <nz-header nz-row nzJustify="space-around" nzAlign="middle">
+      <div nz-col nzSpan="4" class="left">
+        <i nz-icon nzType="menu" nzTheme="outline" (click)="isHiddenLeft()" class="left-icon"></i>
+        <span class="left-today">19</span>
+        <span class="left-title">
+          Calender
+        </span>
+      </div>
+      <div nz-col nzSpan="16" class="center">
+        <button nz-button nzType="default" (click)="todayBtn()">Today</button>
+        &nbsp;
+        <button nz-button nzType="default" nzShape="circle" (click)="todaySub()">
+          <i nz-icon nzType="left" nzTheme="outline"></i>
+        </button>
+        &nbsp;
+        <button nz-button nzType="default" nzShape="circle" (click)="todayAdd()">
+          <i nz-icon nzType="right" nzTheme="outline"></i>
+        </button>
+        <div class="today-year">
+          <span>{{monAndYear}}</span>
+          <br>
+          <!-- <span>农历三月</span> -->
+        </div>
+      </div>
+      <div nz-col nzSpan="4" class="right">
+        <button nz-button nzType="default" nzShape="circle">
+          <i nz-icon nzType="search" nzTheme="outline"></i>
+        </button>
+        &nbsp;
+        <button nz-button nzType="default" nzShape="circle">
+          <i nz-icon nzType="question" nzTheme="outline"></i>
+        </button>
+        &nbsp;
+        <button nz-button nzType="default" nzShape="circle">
+          <i nz-icon nzType="setting" nzTheme="outline"></i>
+        </button>
+        &nbsp;
+        <nz-select [(ngModel)]="dayType" (ngModelChange)="changeType()" style="width: 24%">
+          <nz-option nzValue="day" nzLabel="Day">Day</nz-option>
+          <nz-option nzValue="week" nzLabel="Week">Week</nz-option>
+          <nz-option nzValue="mon" nzLabel="Month">Month</nz-option>
+          <nz-option nzValue="year" nzLabel="Year">Year</nz-option>
+        </nz-select>
+        &nbsp;
+        <i nz-icon nzType="appstore" style="font-size: 20px;" nzTheme="outline"></i>
+        &nbsp;
+        <button nz-button nzType="default" nzShape="circle">
+          <i nz-icon nzType="user" nzTheme="outline"></i>
+        </button>
+      </div>
+    </nz-header>
+    <nz-layout>
+      <nz-sider [class.cleft]="isLefthidden" [nzWidth]="350">
+        <br>
+        <div class="left-btn">
+          <button id="createBtn" (click)="add()"nz-button nzType="default" nzShape="round" nzSize="large">
+            <i nz-icon nzType="plus" nzTheme="outline"></i>
+            Create Event
+          </button>
+        </div>
+        <br>
+        <p class="left-year-info">
+          <span>{{monAndYear}}</span>
+          <span>
+            <button nz-button nzType="default" nzShape="circle" (click)="todaySub()">
+              <i nz-icon nzType="left" nzTheme="outline"></i>
+            </button>
+            &nbsp;
+            <button nz-button nzType="default" nzShape="circle" (click)="todayAdd()">
+              <i nz-icon nzType="right" nzTheme="outline"></i>
+            </button>
+          </span>
+        </p>
+        <div class="left-cal">
+          <nz-calendar [(ngModel)]="selectedDay" [nzFullscreen]="false" (nzSelectChange)="onValueChange($event)" (click)="show()">
+          </nz-calendar>
+
+        </div>
+        <div>
+          <input class="left-input" nz-input placeholder="Basic usage" />
+        </div>
+        <br>
+        <div>
+          <nz-collapse>
+            <nz-collapse-panel *ngFor="let panel of panels" [nzHeader]="panel.name" [nzActive]="panel.active"
+              [nzDisabled]="panel.disabled">
+              {{panel.text}}
+            </nz-collapse-panel>
+          </nz-collapse>
+        </div>
+      </nz-sider>
+      <nz-content>
+        <!-- 周和天 -->
+        <div [hidden]="dayType=='mon' || dayType=='year'">
+          <nz-table #headerTable [nzData]="timesOfDay" [nzPageSize]="50" [nzShowPagination]='false'
+            [nzScroll]="{ y: '650px' }">
+            <thead>
+              <tr>
+                <th *ngFor="let data of dayTitle">
+                  <h2 class="title-day">
+                    <div class="">{{data.week}}</div>
+                    <div [class.act]="data.date == selectedDay">
+                      <div class="getDate">{{data.day}} [(ngModel)]</div>
+                      <app-test msg="{{data.day}}"></app-test>
+                    </div>
+                  </h2>
+                  <!-- <button nz-button nzType="default"  onclick="$window.alert({{data.day}})">a</button> -->
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of headerTable.data">
+                 <td >
+                   {{ data }}:00<div id="task{{data}}" ></div>
+                </td>
+                <!-- <div id="fade" class="black_overlay"></div>  -->
+                <ng-container   *ngIf="dayTitle.length > 1">
+                  <td *ngFor="let data of dayTitle" >
+
+                  </td>
+                </ng-container>
+              </tr>
+            <!--<app-allday></app-allday>-->
+            </tbody>
+          </nz-table>
+        </div>
+        <!-- 月和年 -->
+        <div [hidden]="dayType=='day' || dayType=='week'">
+          <nz-calendar [(nzMode)]="mode" [(ngModel)]="yearAndMonValue">
+            <ul *nzDateCell="let date" class="events">
+              <ng-container [ngSwitch]="date.getDate()">
+                <ng-container *ngSwitchCase="8">
+                  <li *ngFor="let item of listDataMap.eight">
+                    <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
+                  </li>
+                </ng-container>
+                <ng-container *ngSwitchCase="10">
+                  <li *ngFor="let item of listDataMap.ten">
+                    <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
+                  </li>
+                </ng-container>
+                <ng-container *ngSwitchCase="11">
+                  <li *ngFor="let item of listDataMap.eleven">
+                    <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
+                  </li>
+                </ng-container>
+              </ng-container>
+            </ul>
+            <ng-container *nzMonthCell="let month">
+              <div *ngIf="getMonthData(month) as monthData" class="notes-month">
+                <section>{{ monthData }}</section>
+                <span>Backlog number</span>
+              </div>
+            </ng-container>
+          </nz-calendar>
+        </div>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+<app-activity-add></app-activity-add>
+<!--<app-activity-details></app-activity-details>-->

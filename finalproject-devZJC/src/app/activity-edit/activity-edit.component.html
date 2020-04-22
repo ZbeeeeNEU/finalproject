@@ -1,0 +1,20 @@
+<div>
+  <h2>Update an Activity</h2>
+  <div  class="createTable">
+    <input [(ngModel)]="activityData.title" id="title" placeholder="Title" required/>
+    <br>
+    <label>Description:</label>
+    <input [(ngModel)]="activityData.description"/>
+    <br>
+    <label> Start Time:</label>
+    <input [(ngModel)]="activityData.StartTime"  id="starttime" type="time" required/>
+    <label> End Time:</label>
+    <input [(ngModel)]="activityData.EndTime" id= "endtime" type="time"/>
+    <br>
+    <label>Location:</label>
+    <input [(ngModel)]="activityData.location"/>
+    <br>
+    <button (click)="updateActivity()">Update</button>
+  </div>
+
+</div>

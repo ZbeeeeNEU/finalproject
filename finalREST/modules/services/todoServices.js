@@ -1,6 +1,6 @@
 'use strict';
 const username=require('../username');
-const mongoose=require('mongoose'), Todo=mongoose.model(username.getUsername());
+const mongoose=require('mongoose'), Todo=mongoose.model('activities');
 /**
  * How to create the collection?
  */

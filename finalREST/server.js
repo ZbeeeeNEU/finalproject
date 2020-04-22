@@ -1,5 +1,4 @@
 const username=require("./modules/username");
-username.setUsername('jack');
 let express = require('express'),
     app = express(),
     port = process.env.PORT || 3000,
@@ -16,12 +15,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
-
 //Enabling CORS
 app.use(function (req, res, next) {
-    /**
-    Get username from http request.
-     */
 
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -29,11 +24,13 @@ app.use(function (req, res, next) {
     next();
 });
 
+exports.getApp=()=>{
+    return this.app;
+};
 mongoose.connect('mongodb://localhost:27017/finalProject', {});
 mongoose.Promise = global.Promise;
 console.log("This is :"+username.getUsername());
 const initApp = require('./modules/app');
 initApp(app);// launch the app
-
 app.listen(port);
 console.log('Google Calendar RESTful API server started on: ' + port);

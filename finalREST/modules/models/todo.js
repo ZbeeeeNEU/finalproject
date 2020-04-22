@@ -27,6 +27,9 @@ let ActivitySchema=new Schema({
     modifiedDate: {
         type: String
     },
+    username:{
+        type: String
+    },
     Date:{
         type: String,
     }
@@ -46,4 +49,4 @@ ActivitySchema.set('toJSON', {
 });
 console.log("in the todo:"+username.getUsername());
 //module.exports = mongoose.model('activities', ActivitySchema);
-module.exports=mongoose.model(username.getUsername(), ActivitySchema);
+module.exports=mongoose.model('activities', ActivitySchema);

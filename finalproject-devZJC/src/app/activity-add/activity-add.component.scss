@@ -2,9 +2,7 @@ h2{
   font-family: "Century Gothic";
   text-align: center;
 }
-body{
-  z-index: 100;
-}
+
 
 #title{
   outline: none;
@@ -19,26 +17,26 @@ body{
   }
 }
 
-.createTable{
+.createTable {
   text-align: center;
   font-family: "Century Gothic";
 
   display: grid;
-  grid-template-columns: repeat(4,1fr);
-  label{
+  grid-template-columns: repeat(4, 1fr);
+  label {
     grid-column: 1;
     text-align: left;
     margin-left: 25%;
     margin-top: 10px;
   }
-  input{
+  input {
     margin-top: 10px;
     outline: none;
     border: none;
     background-color: lightcyan;
     height: 30px;
     border-radius: 5px;
-    :hover{
+    :hover {
       background-color: lightgray;
     }
     text-align: left;
@@ -53,7 +51,7 @@ body{
   //#endtime{
   //  grid-column: 2;
   //}
-  button{
+  button {
     border: none;
     margin-top: 20px;
     grid-column: 2/4;
@@ -63,11 +61,13 @@ body{
     padding: 10px;
     font-family: "Century Gothic";
     border-radius: 5px;
-    :hover{
+    :hover {
       opacity: 70%;
     }
   }
-
 }
+/**
+navigate to another page scss
+ */
 
 

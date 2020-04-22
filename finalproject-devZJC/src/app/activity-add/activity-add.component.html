@@ -1,5 +1,5 @@
-<div>
-  <h2>2020 04/20</h2>
+<div class="window">
+  <h2>It's {{date}}</h2>
   <div class="createTable">
     <input [(ngModel)]="activityData.title" id="title" placeholder="Title" required/>
     <br>
@@ -15,6 +15,7 @@
       <input [(ngModel)]="activityData.location"/>
     <br>
     <button (click)="addActivity()">Save</button>
+    <button (click)="cancelCreate()"> Cancel</button>
   </div>
 
 </div>

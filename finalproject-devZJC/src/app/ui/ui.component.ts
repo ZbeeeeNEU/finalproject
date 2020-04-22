@@ -42,6 +42,7 @@ export class UIComponent implements OnInit {
   title = 'calendar';
   isLefthidden = false;
   dayType = "day";
+  sendDate: string;
 
   // 被选中的日期
   selectedDay: any = dayjs().format('YYYY-MM-DD')
@@ -111,22 +112,17 @@ export class UIComponent implements OnInit {
 
         if(activity.username!=this.username) continue;
 
-        console.log("The day: "+day);
-
-
         let startTime: string=activity.StartTime;
         //if(startTime==null||startTime==undefined) continue;
         let hour:string=startTime.split(":")[0];
         if(hour.charAt(0)=='0'){
           hour=hour.substring(1);
         }
-        console.log("we have :"+hour);
         let timeDiv=this.el.nativeElement.querySelector("#task"+hour);
         timeDiv.innerHTML='';
         if(activity.Date!=day) continue;
         let actDiv=document.createElement("div");
         actDiv.onclick=(()=>{
-          console.log("Id is "+activity._id);
           this.router.navigate(['details'], {queryParams:{id: activity._id, username: this.username}});
         });
         //setting the style of the activity
@@ -144,8 +140,10 @@ export class UIComponent implements OnInit {
     });
   }
   add() {
-    let addComponent=this.el.nativeElement.querySelector('app-activity-add');
-    addComponent.style.display='inline';
+    // let addComponent=this.el.nativeElement.querySelector('app-activity-add');
+    // addComponent.style.display='inline';
+
+    this.router.navigate(['add'], {queryParams:{username: this.username}});
   }
   // 右边选择type
   changeType() {
@@ -153,8 +151,13 @@ export class UIComponent implements OnInit {
   }
 
   show(){
-
+    this.sendDate=dayjs(this.selectedDay).date();
     this.attachActivities(dayjs(this.selectedDay).date());
+  }
+
+  closeWindow(){
+    let addComponent=this.el.nativeElement.querySelector('app-activity-add');
+    addComponent.style.display='none';
   }
 
   // 左边选择日期
